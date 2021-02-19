@@ -12,11 +12,14 @@ public class Movie {
     String title;
     String overview;
 
+
+    String backdropPath;
     // whoever calls this constructor will be the one to handle
     // the exception thrown by any of the jsonobject methods
     public Movie(JSONObject jsonObject, String imageURL) throws JSONException {
         //poster path is initially a url path. need to use a image loading library
         posterPath = imageURL + "/" + jsonObject.getString("poster_path");
+        backdropPath = imageURL + "/" + jsonObject.getString("backdrop_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
     }
@@ -28,6 +31,10 @@ public class Movie {
         }
 
         return movies;
+    }
+
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
     public String getPosterPath() {

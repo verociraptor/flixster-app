@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="#121212"
+    tools:context=".MainActivity"
+    android:padding="4dp">
 
     <TextView
         android:layout_width="wrap_content"
