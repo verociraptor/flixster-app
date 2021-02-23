@@ -14,10 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.vparra.flixster.DetailActivity;
+import com.vparra.flixster.MainActivity;
 import com.vparra.flixster.R;
 import com.vparra.flixster.models.Movie;
 
@@ -102,8 +105,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
                     //3. pass data into activity
                     intent.putExtra("movie", Parcels.wrap(movie));
-
-                    context.startActivity(intent);
+                    Pair<View, String> p1 = Pair.create((View)tvTitle, "title");
+                    Pair<View, String> p2 = Pair.create((View)tvOverview, "overview");
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((MainActivity)context, p1, p2);
+                    context.startActivity(intent, options.toBundle());
                 }
             });
         }

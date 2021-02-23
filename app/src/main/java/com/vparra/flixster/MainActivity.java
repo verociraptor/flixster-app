@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing";
     public static final String TAG = "MainActivity";
     public static final String IMAGE_CONFIG_URL = "https://api.themoviedb.org/3/configuration";
-    public static final String API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public static final int W342_POSTER_SIZE = 3;
 
     List<Movie> movies;
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         //set params for queries
         RequestParams params = new RequestParams();
-        params.put("api_key", API_KEY);
+        params.put("api_key", getString(R.string.movie_db_api_key));
 
         //get all images sizes
         client.get(IMAGE_CONFIG_URL, params, new JsonHttpResponseHandler() {

@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/light_grey01dp">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/player"
@@ -15,9 +16,11 @@
 
     <TextView
         android:id="@+id/tvTitle"
+        android:transitionName="title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textColor="@color/white"
         android:textSize="30sp"
         tools:text="Wonder Woman 1984" />
 
@@ -28,11 +31,14 @@
         android:layout_height="wrap_content"
         android:isIndicator="true"
         android:numStars="10"
+        android:progressBackgroundTint="#FF000000"
         android:rating="6.9" />
 
     <TextView
         android:id="@+id/tvOverview"
+        android:transitionName="overview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+          android:textColor="@color/light_gray_text"
         tools:text="Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah." />
 </LinearLayout>

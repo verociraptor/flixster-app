@@ -24,9 +24,7 @@ import okhttp3.Headers;
 
 public class DetailActivity extends YouTubeBaseActivity {
 
-    public final String YOUTUBE_API_KEY = "AIzaSyCX4sG65ru1kA1I2Lt3QH6mhSeqmSLWvgM";
     public final String MOVIE_VIDEO_API_CALL = "https://api.themoviedb.org/3/movie/%d/videos";
-    public static final String API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
     TextView tvTitle;
     TextView tvOverview;
@@ -47,10 +45,10 @@ public class DetailActivity extends YouTubeBaseActivity {
         Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         tvTitle.setText(movie.getTitle());
         ratingBar.setRating((float)movie.getRating());
-
+        tvOverview.setText(movie.getOverview());
         //include params for movie db call
         RequestParams params = new RequestParams();
-        params.put("api_key", API_KEY);
+        params.put("api_key", getString(R.string.movie_db_api_key));
 
         //request movie db for video for the movie that was clicked on
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
@@ -80,7 +78,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     }
 
     private void initializeYoutube(final String youtubeKey) {
-        youTubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
+        youTubePlayerView.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializationSuccess");
