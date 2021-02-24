@@ -19,6 +19,7 @@ import androidx.core.util.Pair;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.vparra.flixster.DetailActivity;
 import com.vparra.flixster.MainActivity;
 import com.vparra.flixster.R;
@@ -27,6 +28,8 @@ import com.vparra.flixster.models.Movie;
 import org.parceler.Parcels;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -83,6 +86,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+            int radius = 50; // corner radius, higher value = more rounded
+            int margin = 1; // crop margin, set to 0 for corners with no crop
 
             String imageUrl;
             //if phone is in landscape then imageurl is backdrop image
@@ -94,7 +99,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             }
             // else imageurl is poster image
 
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context).load(imageUrl)
+                    .apply(RequestOptions
+                            .bitmapTransform(
+                                    new RoundedCornersTransformation(
+                                            128, 0,
+                                            RoundedCornersTransformation.CornerType.ALL)))
+                    .into(ivPoster);
 
             //1. Register click listener on whole row
             container.setOnClickListener(new View.OnClickListener() {
